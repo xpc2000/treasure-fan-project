@@ -1,4 +1,7 @@
 package com.treasuryfan.demo.dao;
 
-public interface TicketDao {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class TicketDao {
 }

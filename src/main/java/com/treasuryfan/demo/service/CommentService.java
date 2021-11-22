@@ -1,4 +1,4 @@
 package com.treasuryfan.demo.service;
 
-public class CommentService {
+public interface CommentService {
 }
