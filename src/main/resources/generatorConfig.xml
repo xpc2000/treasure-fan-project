@@ -12,7 +12,7 @@
         </commentGenerator>
 
         <!-- 配置链接数据库  输入账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/Economic?serverTimezone=Asia/Shanghai" userId="root" password="123456">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/Economic?serverTimezone=Asia/Shanghai" userId="root" password="Xpc15392026577@">
         </jdbcConnection>
 
         <!-- java类型处理器 -->
@@ -46,29 +46,29 @@
         </sqlMapGenerator>
 
         <!-- 生成DAO类 -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage = "com.treasuryfan.demo.dao"  targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage = "com.treasuryfan.demo.mapper"  targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
 
         <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素-->
-        <table tableName="t_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false"  enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
+        <table tableName="t_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="false"
+               enableSelectByExample="true"  enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" >
         </table>
 
-        <table tableName="t_blog" domainObjectName="Blog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
+        <table tableName="t_blog" domainObjectName="Blog" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="false"
+               enableSelectByExample="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" >
         </table>
 
-        <table tableName="t_comment" domainObjectName="Comment" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
+        <table tableName="t_comment" domainObjectName="Comment" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="false"
+               enableSelectByExample="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" >
         </table>
 
-        <table tableName="t_ticket" domainObjectName="Ticket" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
+        <table tableName="t_ticket" domainObjectName="Ticket" enableCountByExample="false" enableUpdateByExample="true" enableDeleteByExample="false"
+               enableSelectByExample="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true"
                enableDeleteByPrimaryKey="true" >
         </table>
 

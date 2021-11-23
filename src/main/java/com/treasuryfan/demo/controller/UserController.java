@@ -66,7 +66,7 @@ public class UserController {
         boolean serviceResult=userService.accountCheck(userVo);
         if(serviceResult){
             Long oldTicket=ticketService.findTicket(userVo.getUsername());
-            Long newTicket=ticketService.createTicket(userVo.getUsername());
+            String newTicket=ticketService.createTicket(userVo.getUsername());
             return new Result(ResponseCode.OK,newTicket);
         }
         else
@@ -82,7 +82,7 @@ public class UserController {
      *@Description: 退出
      */
     @RequestMapping(value = "logout", method = RequestMethod.DELETE)
-    public @ResponseBody Result logout(@RequestBody Long ticketId){
+    public @ResponseBody Result logout(@RequestBody String ticketId){
         ticketService.deleteTicket(ticketId);
         return new Result(ResponseCode.OK);
     }

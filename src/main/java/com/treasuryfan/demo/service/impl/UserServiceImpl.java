@@ -1,7 +1,7 @@
 package com.treasuryfan.demo.service.impl;
 
 import com.treasuryfan.demo.dao.UserDao;
-import com.treasuryfan.demo.model.bo.User;
+import com.treasuryfan.demo.model.bo.UserBo;
 import com.treasuryfan.demo.model.vo.LoginUserVo;
 import com.treasuryfan.demo.model.vo.RegisterUserVo;
 import com.treasuryfan.demo.service.UserService;
@@ -14,7 +14,13 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
-
+    /**
+     * @Author: 谢沛辰
+     * @Date: 2021/11/23
+      *@Param: RegisterUserVo
+     *@Return: int
+     *@Description: 添加用户
+     */
     @Override
     public int addUser(RegisterUserVo userVo) {
         //检查邮箱与密码格式是否正确
@@ -26,17 +32,24 @@ public class UserServiceImpl implements UserService {
         //if (!password.matches(".*[a-z]{1,}.*") ||!password.matches(".*[A-Z]{1,}.*") || !password.matches(".*\\d{1,}.*")
         //				|| !password.matches(".*[~!@#$%^&*\\.?]{1,}.*")) {
         //UserMapper检查用户名是否被占用
-        User userFound= userDao.findUser(userVo.getUserName());
+        UserBo userFound= userDao.findUser(userVo.getUserName());
         if(userFound!=null)
             return 1;
         return userDao.addUser(userVo);
 
     }
 
+    /**
+     * @Author: 谢沛辰
+     * @Date: 2021/11/23
+      *@Param: LoginUserVo
+     *@Return: boolean
+     *@Description: 账户验证
+     */
     @Override
     public boolean accountCheck(LoginUserVo userVo) {
         //UserDao查找用户名,确定用户名是否存在
-        User userFound= userDao.findUser(userVo.getUsername());
+        UserBo userFound= userDao.findUser(userVo.getUsername());
         if (userFound==null)
             return false;
         else
