@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.treasuryfan.demo.dao.BlogMapper">
+  <resultMap id="BaseResultMap" type="com.treasuryfan.demo.model.pojo.Blog">
+    <id column="blogid" jdbcType="BIGINT" property="blogid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="comment_num" jdbcType="BIGINT" property="commentNum" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.treasuryfan.demo.model.pojo.Blog">
+    <result column="summary" jdbcType="LONGVARCHAR" property="summary" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blogid, title, userid, create_date, comment_num
+  </sql>
+  <sql id="Blob_Column_List">
+    summary, content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_blog
+    where blogid = #{blogid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_blog
+    where blogid = #{blogid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.treasuryfan.demo.model.pojo.Blog">
+    insert into t_blog (blogid, title, userid, 
+      create_date, comment_num, summary, 
+      content)
+    values (#{blogid,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{commentNum,jdbcType=BIGINT}, #{summary,jdbcType=LONGVARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.treasuryfan.demo.model.pojo.Blog">
+    insert into t_blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogid != null">
+        blogid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="summary != null">
+        summary,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogid != null">
+        #{blogid,jdbcType=BIGINT},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=BIGINT},
+      </if>
+      <if test="summary != null">
+        #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.treasuryfan.demo.model.pojo.Blog">
+    update t_blog
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=BIGINT},
+      </if>
+      <if test="summary != null">
+        summary = #{summary,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blogid = #{blogid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.treasuryfan.demo.model.pojo.Blog">
+    update t_blog
+    set title = #{title,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      comment_num = #{commentNum,jdbcType=BIGINT},
+      summary = #{summary,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where blogid = #{blogid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.treasuryfan.demo.model.pojo.Blog">
+    update t_blog
+    set title = #{title,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      comment_num = #{commentNum,jdbcType=BIGINT}
+    where blogid = #{blogid,jdbcType=BIGINT}
+  </update>
+</mapper>

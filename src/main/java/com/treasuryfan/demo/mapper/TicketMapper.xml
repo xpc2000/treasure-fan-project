@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.treasuryfan.demo.dao.TicketMapper">
+  <resultMap id="BaseResultMap" type="com.treasuryfan.demo.model.pojo.Ticket">
+    <id column="ticketid" jdbcType="BIGINT" property="ticketid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="ticket" jdbcType="VARCHAR" property="ticket" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ticketid, username, expire_time, state, ticket
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ticket
+    where ticketid = #{ticketid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_ticket
+    where ticketid = #{ticketid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.treasuryfan.demo.model.pojo.Ticket">
+    insert into t_ticket (ticketid, username, expire_time, 
+      state, ticket)
+    values (#{ticketid,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{ticket,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.treasuryfan.demo.model.pojo.Ticket">
+    insert into t_ticket
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ticketid != null">
+        ticketid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="expireTime != null">
+        expire_time,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="ticket != null">
+        ticket,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ticketid != null">
+        #{ticketid,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="ticket != null">
+        #{ticket,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.treasuryfan.demo.model.pojo.Ticket">
+    update t_ticket
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="ticket != null">
+        ticket = #{ticket,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ticketid = #{ticketid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.treasuryfan.demo.model.pojo.Ticket">
+    update t_ticket
+    set username = #{username,jdbcType=VARCHAR},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      ticket = #{ticket,jdbcType=VARCHAR}
+    where ticketid = #{ticketid,jdbcType=BIGINT}
+  </update>
+</mapper>

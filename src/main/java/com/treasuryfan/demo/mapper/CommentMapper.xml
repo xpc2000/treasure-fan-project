@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.treasuryfan.demo.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.treasuryfan.demo.model.pojo.Comment">
+    <id column="commentid" jdbcType="BIGINT" property="commentid" />
+    <result column="blogid" jdbcType="BIGINT" property="blogid" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.treasuryfan.demo.model.pojo.Comment">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    commentid, blogid, userid, state, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_comment
+    where commentid = #{commentid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_comment
+    where commentid = #{commentid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.treasuryfan.demo.model.pojo.Comment">
+    insert into t_comment (commentid, blogid, userid, 
+      state, create_time, content
+      )
+    values (#{commentid,jdbcType=BIGINT}, #{blogid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, 
+      #{state,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.treasuryfan.demo.model.pojo.Comment">
+    insert into t_comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        commentid,
+      </if>
+      <if test="blogid != null">
+        blogid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentid != null">
+        #{commentid,jdbcType=BIGINT},
+      </if>
+      <if test="blogid != null">
+        #{blogid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.treasuryfan.demo.model.pojo.Comment">
+    update t_comment
+    <set>
+      <if test="blogid != null">
+        blogid = #{blogid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where commentid = #{commentid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.treasuryfan.demo.model.pojo.Comment">
+    update t_comment
+    set blogid = #{blogid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      state = #{state,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where commentid = #{commentid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.treasuryfan.demo.model.pojo.Comment">
+    update t_comment
+    set blogid = #{blogid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      state = #{state,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where commentid = #{commentid,jdbcType=BIGINT}
+  </update>
+</mapper>
