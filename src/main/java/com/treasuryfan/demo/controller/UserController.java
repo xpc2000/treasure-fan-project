@@ -65,7 +65,6 @@ public class UserController {
     public @ResponseBody Result login(@RequestBody LoginUserVo userVo){
         boolean serviceResult=userService.accountCheck(userVo);
         if(serviceResult){
-            Long oldTicket=ticketService.findTicket(userVo.getUsername());
             String newTicket=ticketService.createTicket(userVo.getUsername());
             return new Result(ResponseCode.OK,newTicket);
         }
