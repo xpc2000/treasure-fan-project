@@ -7,7 +7,7 @@ import com.treasuryfan.demo.model.pojo.TicketExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -77,6 +77,7 @@ public class TicketDao {
         ticket.setState(0);
         ticket.setUsername(userName);
         Date date= new Date();
+        date.setTime(date.getTime()+30*60*1000);
         ticket.setExpireTime(date);
         ticketMapper.insertSelective(ticket);
         return uuid;

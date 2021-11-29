@@ -9,11 +9,25 @@ public class Comment {
 
     private Long userid;
 
+
+
     private Integer state;
 
     private Date createTime;
 
     private String content;
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentid=" + commentid +
+                ", blogid=" + blogid +
+                ", userid=" + userid +
+                ", state=" + state +
+                ", createTime=" + createTime +
+                ", content='" + content + '\'' +
+                '}';
+    }
 
     public Long getCommentid() {
         return commentid;
@@ -38,6 +52,8 @@ public class Comment {
     public void setUserid(Long userid) {
         this.userid = userid;
     }
+
+
 
     public Integer getState() {
         return state;

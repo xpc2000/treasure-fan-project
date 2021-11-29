@@ -3,8 +3,10 @@ package com.treasuryfan.demo.mapper;
 import com.treasuryfan.demo.model.pojo.Blog;
 import com.treasuryfan.demo.model.pojo.BlogExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface BlogMapper {
     int deleteByPrimaryKey(Long blogid);
 

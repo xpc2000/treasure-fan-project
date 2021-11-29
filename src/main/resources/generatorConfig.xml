@@ -12,7 +12,7 @@
         </commentGenerator>
 
         <!-- 配置链接数据库  输入账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/Economic?serverTimezone=Asia/Shanghai" userId="root" password="Xpc15392026577@">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/Economic?serverTimezone=Asia/Shanghai" userId="root" password="123456">
         </jdbcConnection>
 
         <!-- java类型处理器 -->

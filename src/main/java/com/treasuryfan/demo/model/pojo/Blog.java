@@ -17,6 +17,19 @@ public class Blog {
 
     private String content;
 
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "blogid=" + blogid +
+                ", title='" + title + '\'' +
+                ", userid=" + userid +
+                ", createDate=" + createDate +
+                ", commentNum=" + commentNum +
+                ", summary='" + summary + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     public Long getBlogid() {
         return blogid;
     }

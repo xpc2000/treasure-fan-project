@@ -52,4 +52,24 @@ public class UserDao {
         userMapper.insertSelective(user);
         return 0;
     }
+
+    /**
+     * @Author：ps
+     * @Date: 2021.11.24
+     * @Description: 根据用户名查找用户id，返回一个long id
+     */
+
+    public User findUserByUsername(String username) {
+        UserExample userExample=new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+        criteria.andUsernameEqualTo(username);
+
+        List<User> userList=userMapper.selectByExample(userExample);
+
+        return userList.get(0);
+    }
+
+
+
+
 }

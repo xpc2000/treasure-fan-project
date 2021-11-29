@@ -60,4 +60,19 @@ public class TicketServiceImpl implements TicketService {
         ticketDao.DeleteTicket(ticket);
     }
 
+    /**
+     * @Author: xhl
+     * @Date: 2021/11/24
+     *@Param: String ticket
+     *@Return: string
+     *@Description: 通过ticket获取username
+     */
+    @Override
+    public String findUsernameByTicket(String ticket) {
+        TicketBo ticketByTicket = ticketDao.findTicketByTicket(ticket);
+        String username = ticketByTicket.getUsername();
+        return username;
+    }
+
+
 }

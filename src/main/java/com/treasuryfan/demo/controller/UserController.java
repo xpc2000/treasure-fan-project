@@ -30,7 +30,7 @@ public class UserController {
      * @Description:注册接口
      */
     @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public @ResponseBody Result register(@RequestBody RegisterUserVo userVo){
+    public Result register(@RequestBody RegisterUserVo userVo){
         int serviceResult= userService.addUser(userVo);
         //数据库写入成功
         if(serviceResult==0){
@@ -55,18 +55,18 @@ public class UserController {
     }
 
     /**
-     * @Author: 谢沛辰
+     * @Author: 谢沛辰、ps
      * @Date: 2021/11/22
       *@Param: LoginUserVo
      *@Return: Result
      *@Description: 登录
      */
     @RequestMapping(value = "/login",method=RequestMethod.POST)
-    public @ResponseBody Result login(@RequestBody LoginUserVo userVo){
+    public Result login(@RequestBody LoginUserVo userVo){
         boolean serviceResult=userService.accountCheck(userVo);
         if(serviceResult){
             String newTicket=ticketService.createTicket(userVo.getUsername());
-            return new Result(ResponseCode.OK,newTicket);
+            return new Result(ResponseCode.OK,newTicket+"@#@"+userService.findUserid(userVo)+"@#@"+userService.findEmail(userVo));
         }
         else
             return new Result(ResponseCode.LoginFailure);
@@ -80,8 +80,8 @@ public class UserController {
      *@Return: Result
      *@Description: 退出
      */
-    @RequestMapping(value = "logout", method = RequestMethod.DELETE)
-    public @ResponseBody Result logout(@RequestBody String ticketId){
+    @RequestMapping(value = "/logout", method = RequestMethod.DELETE)
+    public Result logout(@RequestParam("ticket")String ticketId){
         ticketService.deleteTicket(ticketId);
         return new Result(ResponseCode.OK);
     }

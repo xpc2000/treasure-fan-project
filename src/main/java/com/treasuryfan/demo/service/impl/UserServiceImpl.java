@@ -58,4 +58,28 @@ public class UserServiceImpl implements UserService {
                 return false;
         return true;
     }
+
+    /**
+     * @Author：ps
+     * @Date: 2021.11.24
+     * @Description: 根据用户名查找用户id，返回一个string
+     * @return
+     */
+    @Override
+    public String findUserid(LoginUserVo userVo) {
+        String userid = userDao.findUserByUsername(userVo.getUsername()).getUserid().toString();
+        return userid;
+    }
+
+
+    /**
+     * @Author：ps
+     * @Date: 2021.11.27
+     * @Description: 根据用户名查找email，返回一个string
+     */
+    @Override
+    public String findEmail(LoginUserVo userVo) {
+        String email = userDao.findUserByUsername(userVo.getUsername()).getEmail();
+        return email;
+    }
 }

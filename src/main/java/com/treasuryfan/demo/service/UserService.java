@@ -6,4 +6,7 @@ import com.treasuryfan.demo.model.vo.RegisterUserVo;
 public interface UserService {
     int addUser(RegisterUserVo userVo);
     boolean accountCheck(LoginUserVo userVo);
+    String findUserid(LoginUserVo userVo);
+    String findEmail(LoginUserVo userVo);
+
 }

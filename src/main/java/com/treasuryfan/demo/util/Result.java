@@ -5,7 +5,7 @@ public class Result {
     private String message;
     private Object data="null";
 
-    public Result() {
+    public Result(ResponseCode ok, String newTicket, long userid, String username) {
     }
 
     public Result(Integer conde, String message) {
@@ -13,18 +13,21 @@ public class Result {
         this.message = message;
     }
 
-    public Result( Integer conde, String message, Object data) {
-        this.conde = conde;
+    public Result(ResponseCode conde, String message, Object data) {
+        this.conde = conde.getCode();
         this.message = message;
         this.data = data;
     }
 
     public Result(ResponseCode responseCode){
-
+        this.conde=responseCode.getCode();
+        this.message=responseCode.getMessage();
     }
 
     public Result(ResponseCode responseCode, Object data){
-
+        this.conde=responseCode.getCode();
+        this.message=responseCode.getMessage();
+        this.data=data;
     }
 
 

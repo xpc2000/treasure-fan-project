@@ -8,8 +8,17 @@ public enum ResponseCode {
     ErrorPassword(604, "密码格式不符合要求"),
     LoginFailure(605, "用户名或密码错误"),
     AlreadyLogin(606,"请不要重复登录"),
-
+    InsufficientPermissions(901,"无权限删除该文章"),
+    InsufficientPermissionsDeleteComment(902,"无权限删除该评论"),
     UnknownFailure(900, "未知错误");
+
+    @Override
+    public String toString() {
+        return "ResponseCode{" +
+                "code=" + code +
+                ", message='" + message + '\'' +
+                '}';
+    }
 
     private int code;
     private String message;
